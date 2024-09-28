@@ -1,0 +1,23 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.9'
+    - run: pip install -r portfolio-backend/requirements.txt
+    - run: pytest
+      working-directory: ./portfolio-backend

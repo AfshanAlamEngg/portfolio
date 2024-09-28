@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./portfolio-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"    # Expose the frontend on port 3000
+    volumes:
+      - ./portfolio-frontend:/app
+    environment:
+      - NODE_ENV=development    # Set the environment variable for Node
+
+  backend:
+    build:
+      context: ./portfolio-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"    # Expose the backend on port 8000
+    volumes:
+      - ./portfolio-backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1      # Ensure logs are shown in real time
